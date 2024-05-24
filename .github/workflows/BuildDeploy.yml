@@ -23,4 +23,4 @@ jobs:
          with:
            push: true
            tags: ${{ steps.login-ecr.outputs.registry }}/demo-first-ecr:${{ github.sha }}
-           file: Dockerfil
+           file: Dockerfile
