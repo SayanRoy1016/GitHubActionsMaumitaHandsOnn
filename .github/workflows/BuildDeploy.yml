@@ -18,5 +18,5 @@ jobs:
          uses: docker/build-push-action@v2
          with:
            push: true
-           tags: ${{ steps.login-ecr.outputs.registry }}/new-demo-ecr:${{ github.sha }}
+           tags: ${{ secrets.AWS_ECR_REGISTRY }}/new-demo-ecr:maumita
            file: Dockerfile
