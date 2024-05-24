@@ -14,9 +14,12 @@ jobs:
            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            aws-region: us-east-1
+      -  name: login to aws ecr
+         id: login-ecr
+         uses: aws-actions/amazon-ecr-login@v2
       -  name: build tag and push docker image to ecr
          uses: docker/build-push-action@v2
          with:
            push: true
-           tags: ${{ secrets.AWS_ECR_REGISTRY }}/new-demo-ecr:maumita
+           tags: ${{ steps.login-ecr.outputs.registry }}/new-demo-ecr:maumita
            file: Dockerfile
