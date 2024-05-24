@@ -20,7 +20,7 @@ jobs:
 
       -  name: build tag and push docker image to ecr
          uses: docker/build-push-action@v2
-           with:
-            push: true
-             tags: ${{ steps.login-ecr.outputs.registry }}/demo-first-ecr:${{ github.sha }}
-             file: Dockerfile
+         with:
+           push: true
+           tags: ${{ steps.login-ecr.outputs.registry }}/demo-first-ecr:${{ github.sha }}
+           file: Dockerfil
