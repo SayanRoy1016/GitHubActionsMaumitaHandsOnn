@@ -19,10 +19,8 @@ jobs:
          uses: aws-actions/amazon-ecr-login@v2
 
       -  name: build tag and push docker image to ecr
-         env:
-           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-           REPOSITORY: demo-first-ecr
-           IMAGE_TAG: ${{ github.sha }}
-         run: |
-           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG
-           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+         uses: docker/build-push-action@v2
+           with:
+            push: true
+             tags: ${{ steps.login-ecr.outputs.registry }}/demo-first-ecr:${{ github.sha }}
+             file: Dockerfile
